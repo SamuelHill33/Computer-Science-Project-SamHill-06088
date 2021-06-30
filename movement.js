@@ -4,17 +4,17 @@ let sprite;
 
 function setup() {
     createCanvas(400, 400);
-    xPos = 0;
-    yPos = 0;
+    xPos = 10;
+    yPos = 10;
 }
 
 function preload() {
-    sprite = loadImage('assets/sprite.png');
+    sprite = loadImage('http://127.0.0.1:8887/assets/sprite.png');
 }
 
 function draw() {
-    background(220);
-    image(sprite, xPos, yPos);
+    background(100);
+    image(sprite, xPos, yPos, 20, 20);
 
     if (keyIsPressed) {
         if (key == "a") {
@@ -30,13 +30,13 @@ function draw() {
     
     if (keyIsPressed) {
         if (key == "s") {
-            yPos--;
+            yPos++w;
         }
     }
     
     if (keyIsPressed) {
         if (key == "w") {
-            yPos++;
+            yPos--;
         }
     }
 }
