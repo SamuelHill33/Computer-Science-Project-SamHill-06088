@@ -89,20 +89,20 @@ function draw() {
 
     //Wall collision:
     for (i = 0; i < xTilePosArr.length; i++) {
-        if (xUserPos > xTilePosArr[i] - size && xUserPos < xTilePosArr[i] + size && yUserPos > yTilePosArr[i] - size && yUserPos < yTilePosArr[i] + size) {
+        if (xUserPos > xTilePosArr[i] - size && xUserPos < xTilePosArr[i] + size && yUserPos > yTilePosArr[i] - size && yUserPos < yTilePosArr[i] + size) {           
             if (xDirection == "left") {
-                xUserPos += speed; //forces opposite speed to users motion causing user to stop 
+                xUserPos += speed; //forces opposite speed to users motion causing user to stop
             }
             
             if (xDirection == "right") {
                 xUserPos -= speed;
             }
             
-            if (yDirection == "up" && xDirection == "") {
+            if (yDirection == "up") {
                 yUserPos += speed;
             }
             
-            if (yDirection == "down" && xDirection == "") {
+            if (yDirection == "down") {
                 yUserPos -= speed;
             }
         }
