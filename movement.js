@@ -30,7 +30,7 @@ function draw() {
     
     if (keyIsPressed) {
         if (key == "s") {
-            yPos++w;
+            yPos++;
         }
     }
     
