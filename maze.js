@@ -114,20 +114,20 @@ function draw() {
     if (keyIsDown(65)) {
         xUserPos -= speed; //moves character left when A is being held
         xDirection = "left"; 
-    } else if (keyIsDown(68)) {
+    }
+    
+    if (keyIsDown(68)) {
         xUserPos += speed; //moves character right when D is being held
         xDirection = "right";
-    } else {
-        xDirection = ""; 
     }
     
     if (keyIsDown(87)) {
         yUserPos -= speed; //moves character up when W is being held
         yDirection = "up";
-    } else if (keyIsDown(83)) {
+    } 
+    
+    if (keyIsDown(83)) {
         yUserPos += speed; //moves character down when S is being held
         yDirection = "down";
-    } else {
-        yDirection = "";
     }
 }
