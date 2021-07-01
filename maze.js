@@ -94,40 +94,44 @@ function draw() {
                 xUserPos += speed; //forces opposite speed to users motion causing user to stop
             }
             
-            if (xDirection == "right") {
+            else if (xDirection == "right") {
                 xUserPos -= speed;
             }
             
-            if (yDirection == "up") {
+            else if (yDirection == "up") {
                 yUserPos += speed;
             }
             
-            if (yDirection == "down") {
+            else if (yDirection == "down") {
                 yUserPos -= speed;
             }
         }
     }
 
-    image(sprite, xUserPos, yUserPos, size, size); //spawns sprite
-
     //Character movement:
     if (keyIsDown(65)) {
         xUserPos -= speed; //moves character left when A is being held
         xDirection = "left"; 
+        yDirection = "none"; 
     }
     
     if (keyIsDown(68)) {
         xUserPos += speed; //moves character right when D is being held
         xDirection = "right";
+        yDirection = "none"; 
     }
     
     if (keyIsDown(87)) {
         yUserPos -= speed; //moves character up when W is being held
         yDirection = "up";
+        xDirection = "none"; 
     } 
     
     if (keyIsDown(83)) {
         yUserPos += speed; //moves character down when S is being held
         yDirection = "down";
+        xDirection = "none"; 
     }
+
+    image(sprite, xUserPos, yUserPos, size, size); //spawns sprite
 }
