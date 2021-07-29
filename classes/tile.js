@@ -12,9 +12,13 @@ class Tile { //a class that instantiates a tile object
         return this.size; //returns the tiles size (square side length value)
     }
 
+    isCollidable() {
+        return false;
+    }
+
     draw() { //a method for displaying the tile object onto the canvas
         fill(200); //colours tile
         stroke(180); //outlines tile
-        rect(this.gridRef.getXTileRef(), this.gridRef.getYTileRef(), this.size, this.size); //spawns tile
+        rect(this.gridRef.getXPos(), this.gridRef.getYPos(), this.size, this.size); //spawns tile
     }
 }

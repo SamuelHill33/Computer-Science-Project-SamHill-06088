@@ -3,9 +3,13 @@ class WallTile extends Tile { //a class that extends from a tile class and insta
         super(gridRef, size);
     }
 
+    isCollidable() {
+        return true;
+    }
+
     draw() { //wall tile has different draw method that will overwrite parent class draw method
         fill(100, 70, 50); 
         noStroke(); //removes outline (no outline)
-        rect(this.gridRef.getXTileRef(), this.gridRef.getYTileRef(), this.size, this.size); 
+        rect(this.gridRef.getXPos(), this.gridRef.getYPos(), this.size, this.size); 
     }
 }

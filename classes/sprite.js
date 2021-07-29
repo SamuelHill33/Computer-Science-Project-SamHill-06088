@@ -1,23 +1,29 @@
 class Sprite {
-    constructor(image, gridRef, speed, size) {
-        this.image = image;
+    constructor(sourceImage, gridRef, speed, size) {
+        this.sourceImage = sourceImage;
         this.gridRef = gridRef;
         this.speed = speed;
         this.size = size;
-        image(image, gridRef.getXTileRef(), yUserPos, size, size); //spawns sprite
     }
 
-    getImage() {
-        return this.image;
+    draw() {
+        image(this.sourceImage, this.gridRef.getXPos(), this.gridRef.getYPos(), this.size, this.size); //spawns sprite
     }
 
-    setImage(newImage) {
-        this.image = newImage;
+    getSourceImage() {
+        return this.sourceImage;
+    }
+
+    setSourceImage(newImage) {
+        this.sourceImage = newImage;
     }
 
     getGridRef() {
-        
         return this.gridRef;
+    }
+
+    setGridRef(newGridRef) {
+        this.gridRef = newGridRef;
     }
 
     getSpeed() {
