@@ -10,6 +10,6 @@ class WallTile extends Tile { //a class that extends from a tile class and insta
     draw() { //wall tile has different draw method that will overwrite parent class draw method
         fill(100, 70, 50); 
         noStroke(); //removes outline (no outline)
-        rect(this.gridRef.getXPos(), this.gridRef.getYPos(), this.size, this.size); 
+        rect(this.gridRef.getXTilePos(), this.gridRef.getYTilePos(), this.size, this.size); 
     }
 }

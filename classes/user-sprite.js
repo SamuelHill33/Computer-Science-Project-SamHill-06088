@@ -3,21 +3,21 @@ class UserSprite extends Sprite {
         super(sourceImage, gridRef, speed, size);
     }
 
-    newPosition() {
-        if (keyIsDown(65)) {
-            return new GridRef(this.gridRef.getXPos() - speed, this.gridRef.getYPos(), this.size); //moves character left when A is being held
+    newGridRef() {
+        if (key == 'a' && this.gridRef.getXTileRef() > 0) {
+            return new GridRef(this.gridRef.getXTileRef() - 1, this.gridRef.getYTileRef(), this.size); //creates a new gridRef at the tile to the left of the player
         }
     
-        if (keyIsDown(68)) {
-            return new GridRef(this.gridRef.getXPos() + speed, this.gridRef.getYPos(), this.size); //moves character right when D is being held
+        if (key == 'd') {
+            return new GridRef(this.gridRef.getXTileRef() + 1, this.gridRef.getYTileRef(), this.size); //creates a new gridRef at the tile to the right of the player
         }
         
-        if (keyIsDown(87)) {
-            return new GridRef(this.gridRef.getXPos(), this.gridRef.getYPos() - speed, this.size); //moves character up when W is being held
+        if (key == 'w' && this.gridRef.getYTileRef() > 0) {
+            return new GridRef(this.gridRef.getXTileRef(), this.gridRef.getYTileRef() - 1, this.size); //creates a new gridRef at the tile above the player
         } 
     
-        if (keyIsDown(83)) {
-            return new GridRef(this.gridRef.getXPos(), this.gridRef.getYPos() + speed, this.size); //moves character down when S is being held
+        if (key == 's') {
+            return new GridRef(this.gridRef.getXTileRef(), this.gridRef.getYTileRef() + 1, this.size); //creates a new gridRef at the tile below the player
         }
 
         return this.gridRef;

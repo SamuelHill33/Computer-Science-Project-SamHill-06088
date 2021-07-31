@@ -7,7 +7,7 @@ class Sprite {
     }
 
     draw() {
-        image(this.sourceImage, this.gridRef.getXPos(), this.gridRef.getYPos(), this.size, this.size); //spawns sprite
+        image(this.sourceImage, this.gridRef.getXTilePos(), this.gridRef.getYTilePos(), this.size, this.size); //spawns sprite
     }
 
     getSourceImage() {
