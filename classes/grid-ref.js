@@ -24,4 +24,24 @@ class GridRef { //a class that instantiates a coordinate pair object
     getID() {
         return this.xTileRef + ":" + this.yTileRef;
     }
+
+    getAdjacentRightGridRef() {
+        return new GridRef(this.xTileRef + 1, this.yTileRef, this.size);
+    }
+
+    getAdjacentLeftGridRef() {
+        return new GridRef(this.xTileRef - 1, this.yTileRef, this.size);
+    }
+
+    getAdjacentUpGridRef() {
+        return new GridRef(this.xTileRef, this.yTileRef - 1, this.size);
+    }
+
+    getAdjacentDownGridRef() {
+        return new GridRef(this.xTileRef, this.yTileRef + 1, this.size);
+    }
+
+    equals(gridRef) {
+        return gridRef.getXTileRef() == this.xTileRef && gridRef.getYTileRef() == this.yTileRef; 
+    }
 }

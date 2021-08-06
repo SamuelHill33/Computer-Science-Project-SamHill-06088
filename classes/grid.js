@@ -1,6 +1,7 @@
 class Grid { //a class that instatiates a grid object
     tilesMap = new Map(); //creates a new empty map
     constructor(mazeMap) {
+        this.mazeMap = mazeMap;
         for (let j = 0; j < mazeMap.length; j++) {
             for (let i = 0; i < mazeMap[j].length; i++) { //loops around mazeMap 2D array
                 let gridRef = new GridRef(j, i, size); //creates grid reference object
@@ -22,6 +23,35 @@ class Grid { //a class that instatiates a grid object
     }
 
     getTile(gridRef) {
-        return this.tilesMap.get(gridRef.getID()); //returns the tile with the specified gridRef ID from the map
+        if (gridRef.getXTileRef() > this.mazeMap.length - 1 ||
+            gridRef.getYTileRef() > this.mazeMap.length - 1 ||
+            gridRef.getXTileRef() < 0 ||
+            gridRef.getYTileRef() < 0
+        ) {
+            return null;
+        } else {
+            return this.tilesMap.get(gridRef.getID()); //gets a tile from the tiles map with the specified grid ref ID
+        }
+    }
+
+    getAdjacentEntrableTilesGridRefs(gridRef) {
+        let adjacentEntrableTilesGridRefs = [];
+
+        this.areAdjacentTilesGridRefsEntrable(adjacentEntrableTilesGridRefs, gridRef.getAdjacentRightGridRef()); //sends all adjacent tiles grid refs through check
+        this.areAdjacentTilesGridRefsEntrable(adjacentEntrableTilesGridRefs, gridRef.getAdjacentLeftGridRef());
+        this.areAdjacentTilesGridRefsEntrable(adjacentEntrableTilesGridRefs, gridRef.getAdjacentUpGridRef());
+        this.areAdjacentTilesGridRefsEntrable(adjacentEntrableTilesGridRefs, gridRef.getAdjacentDownGridRef());
+
+        return adjacentEntrableTilesGridRefs;
+    }
+
+    areAdjacentTilesGridRefsEntrable(adjacentEntrableTilesGridRefs, gridRef) {
+        let tile = this.getTile(gridRef);
+
+        if (tile !== null && tile.isEntrable()) {
+            adjacentEntrableTilesGridRefs.push(tile.getGridRef());
+        } else {
+            return; 
+        }
     }
 }

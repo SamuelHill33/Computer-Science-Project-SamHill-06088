@@ -3,8 +3,8 @@ class EmptyTile extends Tile {
         super(gridRef, size);
     }
 
-    isCollidable() {
-        return false;
+    isEntrable() {
+        return true;
     }
 
     draw() { //a method for displaying the tile object onto the canvas
