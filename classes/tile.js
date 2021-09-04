@@ -11,4 +11,16 @@ class Tile { //a class that instantiates a tile object
     getSize() {
         return this.size; //returns the tiles size (square side length value)
     }
+
+    transition(state) {
+        return false; //no transition
+    }
+
+    isDeathTile() {
+        return false;
+    }
+
+    getID() {
+        return this.gridRef.getID();
+    }
 }

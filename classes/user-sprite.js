@@ -5,30 +5,59 @@ class UserSprite extends Sprite {
         super(sourceImage, gridRef, speed, size);
     }
 
-    newGridRef() {
-        if (key == 'a') {
-            return this.gridRef.getAdjacentLeftGridRef(); //creates a new gridRef at the tile to the left of the player
+    #newGridRef() {
+        if (key == 'a') { //left
+            return this.gridRef.getAdjacentLeftGridRef(); 
         }
     
-        if (key == 'd') {
-            return this.gridRef.getAdjacentRightGridRef(); //creates a new gridRef at the tile to the right of the player
+        if (key == 'd') { //right
+            return this.gridRef.getAdjacentRightGridRef(); 
         }
         
-        if (key == 'w') {
-            return this.gridRef.getAdjacentUpGridRef();; //creates a new gridRef at the tile above the player
+        if (key == 'w') { //up
+            return this.gridRef.getAdjacentUpGridRef();
         } 
     
-        if (key == 's') {
-            return this.gridRef.getAdjacentDownGridRef(); //creates a new gridRef at the tile below the player
+        if (key == 's') { //down
+            return this.gridRef.getAdjacentDownGridRef(); 
         }
 
         return this.gridRef;
     }
 
-    move(tile) {
-        if (tile.isEntrable()) {
-            player.setGridRef(this.newGridRef());
-            player.draw();
+    setNextPos(grid) {
+        let newGridRef = this.#newGridRef();
+
+        if (grid.isEntrable(newGridRef)) { //if tile at new grid ref is entrable
+            this.gridRef = newGridRef; //set players current position to tile at new grid ref
+            return true; //player has moved
         }
+
+        return false;
+    }
+
+    shouldMove() {
+        if (keyIsPressed) {
+            count++;
+
+            if (count == 1 || count == this.getSpeed()) { //if a key has just been pressed or has been down for a set number of ms
+            count = 1; 
+            return true;
+            }
+        } else {
+            count = 0;
+        }
+    }
+4
+    dieIfNecessary(grid) {
+        let playerTile = grid.getTile(this.getGridRef());
+        if (playerTile.isDeathTile()) {
+            this.#kill();
+        }
+    }
+
+    #kill() {
+        console.log("dead");
+        //alert("stop");
     }
 }

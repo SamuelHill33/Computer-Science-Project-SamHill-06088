@@ -3,6 +3,13 @@ let userImage;
 let botImage;
 let timer = 0;
 
+const botDirection = {
+    LEFT: "left",
+    RIGHT: "right",
+    UP: "up",
+    DOWN: "down"
+}
+
 let mazeMap = [ //2D array of tile positions in maze -- 0: path tile -- 1: wall tile -- 2: start tile -- 3: target tile -- 4: door tile -- 5: key tile -- 6: vent tile, etc...
 [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
@@ -42,8 +49,8 @@ function testButton() {
 }
 
 function preload() {
-    userImage = loadImage('http://127.0.0.1:5500/assets/sprite.png'); //preloads character image
-    botImage = loadImage('http://127.0.0.1:5500/assets/sprite2.png'); //preloads bot image
+    userImage = loadImage('http://127.0.0.1:5500/assets/player.png'); //preloads character image
+    botImage = loadImage('http://127.0.0.1:5500/assets/bot.png'); //preloads bot image
 }
 
 function setup() { //function executes once on startup
@@ -60,47 +67,25 @@ function setup() { //function executes once on startup
     botGridRef = new GridRef(19, 20, size);
     for (i = 0; i < botNum; i++) {
         bots[i] = new BotSprite(botImage, botGridRef, 40, size);
+        bots[i].draw();
     }
 }
 
 function draw() { //function executes every tick (ms)
     timer++;
-    moveUserSprite();
-    moveBotSprites(timer);
-}
 
-function moveUserSprite() {
-    if (keyIsPressed) {
-        count++;
-
-        if (count == 1 || count == player.getSpeed()) {
-            count = 1;
-            let tile = grid.getTile(player.newGridRef()); //returns grid ref of tile player wants to move too
-
-            if (tile !== null && tile.isEntrable()) {
-                currentTile = grid.getTile(player.getGridRef()); //the tile with the specified gridRef
-                currentTile.draw();
-                player.move(tile);
-            }
-        }
-    } else {
-        count = 0;
+    if (player.shouldMove()) {
+        player.move(grid);
     }
-}
 
-function moveBotSprites(count) {
-    if (count % bots[0].getSpeed() == 0) {
+    if (bots[0] !== undefined && bots[0].shouldMove()) { //if bots should move
+        grid.reinitiallize(); //clear all sight tiles back to empty tiles
 
-        for (i = 0; i < bots.length; i++) {
-            availableGridRefs = grid.getAdjacentEntrableTilesGridRefs(bots[i].getGridRef());
-            currentTile = grid.getTile(bots[i].getGridRef()); //the tile with the specified gridRef
-            currentTile.draw();
-
-            if (availableGridRefs.length < 2) {
-                bots[i].moveBack();
-            } else {
-                bots[i].move(availableGridRefs);
-            }
+        for (i = 0; i < bots.length; i++) { //move every bot
+            bots[i].move(grid);
         }
     }
+    
+    player.dieIfNecessary(grid); //determine if player should die
 }
+

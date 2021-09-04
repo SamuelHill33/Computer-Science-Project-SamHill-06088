@@ -6,11 +6,11 @@ class GridRef { //a class that instantiates a coordinate pair object
     }
 
     getXTileRef() {
-        return this.xTileRef; //returns x position of coordinate pair
+        return this.xTileRef;
     }
 
     getYTileRef() {
-        return this.yTileRef; //returns y position of coordinate pair
+        return this.yTileRef;
     }
 
     getXTilePos() {
@@ -22,7 +22,7 @@ class GridRef { //a class that instantiates a coordinate pair object
     }
 
     getID() {
-        return this.xTileRef + ":" + this.yTileRef;
+        return this.xTileRef + ":" + this.yTileRef; //ID used as reference in tiles map
     }
 
     getAdjacentRightGridRef() {
@@ -39,9 +39,5 @@ class GridRef { //a class that instantiates a coordinate pair object
 
     getAdjacentDownGridRef() {
         return new GridRef(this.xTileRef, this.yTileRef + 1, this.size);
-    }
-
-    equals(gridRef) {
-        return gridRef.getXTileRef() == this.xTileRef && gridRef.getYTileRef() == this.yTileRef; 
     }
 }
