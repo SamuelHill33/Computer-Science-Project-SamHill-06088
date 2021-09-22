@@ -15,7 +15,7 @@ let mazeMap = [ //2D array of tile positions in maze -- 0: path tile -- 1: wall 
 [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
 [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
 [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0],
-[0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0],
+[0, 1, 1, 2, 1, 2, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 4, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0],
 [1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -38,10 +38,10 @@ let mazeMap = [ //2D array of tile positions in maze -- 0: path tile -- 1: wall 
 [0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
 [0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
 [0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0],
-[0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+[0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 3, 0, 0],
 [0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1],
 [1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0],
-[1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1],
+[1, 1, 0, 1, 0, 1, 1, 0, 1, 4, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1],
 [1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]]
 
 function testButton() {
@@ -49,8 +49,12 @@ function testButton() {
 }
 
 function preload() {
-    userImage = loadImage('http://127.0.0.1:5500/assets/player.png'); //preloads character image
-    botImage = loadImage('http://127.0.0.1:5500/assets/bot.png'); //preloads bot image
+    userImage = loadImage('http://127.0.0.1:5500/assets/player.png');
+    botImage = loadImage('http://127.0.0.1:5500/assets/bot.png');
+    buttonTileImage = loadImage('http://127.0.0.1:5500/assets/button.png');
+    doorTileClosedImage = loadImage('http://127.0.0.1:5500/assets/doorClosed.png');
+    doorTileOpenImage = loadImage('http://127.0.0.1:5500/assets/doorOpened.png');
+    teleportTileImage = loadImage('http://127.0.0.1:5500/assets/teleport.png')
 }
 
 function setup() { //function executes once on startup
@@ -71,19 +75,33 @@ function setup() { //function executes once on startup
     }
 }
 
-function draw() { //function executes every tick (ms)
+function draw() { //function executes every tick
     timer++;
+
+    if (bots[0] !== undefined && bots[0].shouldMove()) { //if there is at least one bot and bot(s) should move
+        grid.reinitialize(); //clear all sight tiles back to empty tiles
+
+        for (i = 0; i < bots.length; i++) {
+            bots[i].move(grid);
+            bots[i].drawSightTiles(grid);
+        }
+
+        for (i = 0; i < bots.length; i++) {
+            bots[i].draw();
+        }
+
+        player.draw(); //to make sure that sprite doesn't disappear when a sight tile is drawn over the sprite
+    }
 
     if (player.shouldMove()) {
         player.move(grid);
+        player.draw();
     }
 
-    if (bots[0] !== undefined && bots[0].shouldMove()) { //if bots should move
-        grid.reinitiallize(); //clear all sight tiles back to empty tiles
-
-        for (i = 0; i < bots.length; i++) { //move every bot
-            bots[i].move(grid);
-        }
+    if (player.interact()) { //if the player has pressed the interact key
+        let gridRef = player.getGridRef(); //get player position
+        let tile = grid.getTile(gridRef); //get tile at player position
+        tile.interact();
     }
     
     player.dieIfNecessary(grid); //determine if player should die

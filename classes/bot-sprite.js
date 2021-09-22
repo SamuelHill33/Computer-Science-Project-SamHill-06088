@@ -8,7 +8,7 @@ class BotSprite extends Sprite {
         return this.previousGridRef;
     }
 
-    setNextPos(grid) {
+    setNextPos() {
         let availableGridRefs = this.#determineEligibleGridRefs(grid);
 
         if (availableGridRefs.length == 0) { //if the sprite can only move back to where it just moved from
@@ -27,7 +27,7 @@ class BotSprite extends Sprite {
         return true;
     }
 
-    #determineEligibleGridRefs(grid) {
+    #determineEligibleGridRefs() { //removes previous bots position as an available grid ref
         let availableGridRefs = grid.getAdjacentEntrableGridRefs(this.gridRef);
 
         for (let i = 0; i < availableGridRefs.length; i++) {
@@ -46,19 +46,11 @@ class BotSprite extends Sprite {
         }
     } 
 
-    move(grid) { //after all bots have moved, draw sight tiles
-        super.move(grid);
-        this.#drawSightTiles(grid); 
-        this.draw();
-    }
-
-    #drawSightTiles(grid) {
+    drawSightTiles() {
         let newSightTiles = grid.getParralelEntrableTiles(this.gridRef, this.#getDirection());
 
         for (let tile of newSightTiles) { //for every tile in the new tiles array
-            if (tile.transition(compositeTileState.SIGHT_TILE)) { //if an empty tile has switched to a sight tile
-                tile.draw();
-            }
+            tile.transitionDeathTile(true);
         }
     }
 

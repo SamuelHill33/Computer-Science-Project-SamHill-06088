@@ -25,7 +25,7 @@ class UserSprite extends Sprite {
         return this.gridRef;
     }
 
-    setNextPos(grid) {
+    setNextPos() {
         let newGridRef = this.#newGridRef();
 
         if (grid.isEntrable(newGridRef)) { //if tile at new grid ref is entrable
@@ -49,15 +49,22 @@ class UserSprite extends Sprite {
         }
     }
 4
-    dieIfNecessary(grid) {
+    dieIfNecessary() {
         let playerTile = grid.getTile(this.getGridRef());
         if (playerTile.isDeathTile()) {
-            this.#kill();
+            this.#die();
         }
     }
 
-    #kill() {
-        console.log("dead");
+    #die() {
+        console.log("player died");
         //alert("stop");
+    }
+
+    interact() {
+        if (keyIsPressed == true && key == 'e') {
+            return true;
+        }
+        return false;
     }
 }

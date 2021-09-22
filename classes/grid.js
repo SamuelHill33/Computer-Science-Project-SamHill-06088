@@ -2,17 +2,32 @@ class Grid {
     tilesMap = new Map();
     constructor(mazeMap) {
         this.mazeMapDimension = mazeMap.length;
+        this.doorTiles = [];
+
+        let teleportTile;
 
         for (let j = 0; j < this.mazeMapDimension; j++) {
             for (let i = 0; i < this.mazeMapDimension; i++) { //loops around mazeMap 2D array
                 let gridRef = new GridRef(j, i, size);
-                let tile;
                 
                 if (mazeMap[i][j] == 1) { //if value at position in 2D array is equal to a 1 then
-                    tile = new WallTile(gridRef, size); //places wall tile at position
+                    var tile = new WallTile(gridRef, size); //places wall tile at position
                 } else if (mazeMap[i][j] == 0) {
-                    tile = new CompositeTile(gridRef, size);
-                }
+                    var tile = new EmptyTile(gridRef, size);
+                } else if (mazeMap[i][j] == 2) {
+                    var tile = new DoorTile(gridRef, size, doorTileClosedImage);
+                    this.doorTiles.push(tile);
+                } else if (mazeMap[i][j] == 3) {
+                    var tile = new ButtonTile(gridRef, size, buttonTileImage);
+                } else if (mazeMap[i][j] == 4) {
+                    var tile = new TeleportTile(gridRef, size, teleportTileImage);
+                    if (teleportTile == undefined) {
+                        teleportTile = tile;
+                    } else {
+                        tile.setOtherTile(teleportTile);
+                        teleportTile.setOtherTile(tile);
+                    }
+                } 
 
                 this.tilesMap.set(tile.getID(), tile); //adds new tile to the tiles map
             }
@@ -85,11 +100,17 @@ class Grid {
         return null;
     }
 
-    reinitiallize() {
+    reinitialize() {
         for (let tile of this.tilesMap.values()) { //for every tile in the map
-            if (tile.transition(compositeTileState.EMPTY_TILE)) { //if the tile has transitioned to an empty tile (if the tile is a sight tile)
-                tile.draw();
-            }
+            tile.transitionDeathTile(false);
         }
     }
+
+    openDoors() {
+        for (let doorTile of this.doorTiles) { //for every door tile on the maze
+            doorTile.openDoor();
+        }
+    }
+
+    
 }
