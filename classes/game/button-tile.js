@@ -1,7 +1,7 @@
-class TeleportTile extends Tile {
-    constructor(gridRef, size, color) {
+class ButtonTile extends Tile {
+    constructor(gridRef, size, sourceImage, color) {
         super(gridRef, size, color);
-        this.sourceImage = teleportTileImage;
+        this.sourceImage = sourceImage;
     }
 
     isEntrable() {
@@ -15,14 +15,15 @@ class TeleportTile extends Tile {
         image(this.sourceImage, this.gridRef.getXTilePos(), this.gridRef.getYTilePos(), this.size, this.size);
     }
 
-    executeInteract() {
-        player.setGridRef(this.otherTile.getGridRef());
-        player.draw();
-        this.draw();
-        this.otherTile.coolDown(this.coolDownPeriod);
+    executeInteract(screen) {
+        screen.getGrid().openDoors();
     }
 
-    setOtherTile(otherTile) {
-        this.otherTile = otherTile;
+    getSourceImage() {
+        return this.sourceImage;
+    }
+
+    setSourceImage(newSourceImage) {
+        this.sourceImage = newSourceImage;
     }
 }

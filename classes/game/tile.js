@@ -28,15 +28,15 @@ class Tile { //a class that instantiates a tile object
         this.draw();
     }
 
-    interact() {
+    interact(screen) {
         if (timer > this.time) {
-            this.executeInteract();
+            this.executeInteract(screen);
             this.coolDown(this.coolDownPeriod);
         }
     }
 
-    executeInteract() {
-
+    executeInteract(screen) {
+        //by default, empty
     }
 
     isDeathTile() {

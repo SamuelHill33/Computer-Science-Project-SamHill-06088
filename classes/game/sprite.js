@@ -34,7 +34,7 @@ class Sprite {
         return this.size;
     }
 
-    move() {
+    move(grid) {
         let currentGridRef = this.getGridRef(); //sets currentGridRef to sprites current position
         if (this.setNextPos(grid)) { //sets the next position of the sprite
             let tile = grid.getTile(currentGridRef); //gets the tile at the sprites previous position

@@ -8,7 +8,7 @@ class BotSprite extends Sprite {
         return this.previousGridRef;
     }
 
-    setNextPos() {
+    setNextPos(grid) {
         let availableGridRefs = this.#determineEligibleGridRefs(grid);
 
         if (availableGridRefs.length == 0) { //if the sprite can only move back to where it just moved from
@@ -27,7 +27,7 @@ class BotSprite extends Sprite {
         return true;
     }
 
-    #determineEligibleGridRefs() { //removes previous bots position as an available grid ref
+    #determineEligibleGridRefs(grid) { //removes previous bots position as an available grid ref
         let availableGridRefs = grid.getAdjacentEntrableGridRefs(this.gridRef);
 
         for (let i = 0; i < availableGridRefs.length; i++) {
@@ -46,7 +46,7 @@ class BotSprite extends Sprite {
         }
     } 
 
-    drawSightTiles() {
+    drawSightTiles(grid) {
         let newSightTiles = grid.getParralelEntrableTiles(this.gridRef, this.#getDirection());
 
         for (let tile of newSightTiles) { //for every tile in the new tiles array
