@@ -2,7 +2,11 @@ let gameScreen;
 let menuScreen;
 
 function switchScreen() {
-    gameScreen = new GameScreen("level1", 10);
+    if (gameScreen != null) {
+        clear();
+        menuScreen = new MenuScreen("menu");
+        gameScreen = null;
+    }
 }
 
 function preload() { //function executes once on startup
@@ -13,9 +17,15 @@ function preload() { //function executes once on startup
     doorTileOpenImage = loadImage('http://127.0.0.1:5500/assets/doorOpened.png');
     teleportTileImage = loadImage('http://127.0.0.1:5500/assets/teleport.png');
 
-    level1PreviewImage = teleportTileImage;
-    level2PreviewImage = doorTileOpenImage;
-    level3PreviewImage = buttonTileImage;
+    menuData = loadJSON('http://127.0.0.1:5500/levels/levels.json');
+    console.log(menuData);
+    for (level in menuData.levels) {
+        level.image = loadImage(level.imageURL);
+    }
+
+    // level1PreviewImage = teleportTileImage;
+    // level2PreviewImage = doorTileOpenImage;
+    // level3PreviewImage = buttonTileImage;
 }
 
 function setup() { //function executes once on startup

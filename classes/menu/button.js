@@ -1,15 +1,11 @@
 class Button {
-    constructor(name, buttonX, buttonY, buttonWidth, buttonHeight) {
-        this.name = name;
+    constructor(sourceImage, buttonX, buttonY, buttonWidth, buttonHeight) {
+        this.sourceImage = sourceImage;
         this.buttonX = buttonX;
         this.buttonY = buttonY;
         this.buttonWidth = buttonWidth;
         this.buttonHeight = buttonHeight;
         this.hover = false;
-    }
-
-    getName() {
-        return this.name;
     }
 
     isHover() {
@@ -33,6 +29,7 @@ class Button {
         strokeWeight(3);
         fill(150);
         rect(this.buttonX, this.buttonY, this.buttonWidth, this.buttonHeight);
+        image(this.sourceImage, this.buttonX, this.buttonY, this.buttonWidth, this.buttonHeight);
     }
 
     execute() {
