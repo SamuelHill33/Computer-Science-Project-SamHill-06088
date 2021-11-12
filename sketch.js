@@ -1,5 +1,7 @@
 let gameScreen;
 let menuScreen;
+let imageMap = new Map();
+let gameMap = new Map();
 
 function switchScreen() {
     if (gameScreen != null) {
@@ -17,11 +19,7 @@ function preload() { //function executes once on startup
     doorTileOpenImage = loadImage('http://127.0.0.1:5500/assets/doorOpened.png');
     teleportTileImage = loadImage('http://127.0.0.1:5500/assets/teleport.png');
 
-    menuData = loadJSON('http://127.0.0.1:5500/levels/levels.json');
-    console.log(menuData);
-    for (level in menuData.levels) {
-        level.image = loadImage(level.imageURL);
-    }
+    menuData = loadJSON('http://127.0.0.1:5500/levels/levels.json', loadLevels);
 
     // level1PreviewImage = teleportTileImage;
     // level2PreviewImage = doorTileOpenImage;
@@ -50,5 +48,18 @@ function mousePressed() {
             menuScreen = null;
         }
     }
+}
+
+function loadLevels(_menuData) {
+    for (let i = 0; i < _menuData.levels.length; i++) {
+        imageMap.set(_menuData.levels[i].name, loadImage(_menuData.levels[i].imageURL));
+        gameData = loadJSON('http://127.0.0.1:5500/levels/' + _menuData.levels[i].name + '.json', loadGame);
+    }
+}
+
+function loadGame(_gameData) {
+    console.log(_gameData);
+    console.log(gameMap);
+    gameMap.set(_gameData.name, _gameData);
 }
 

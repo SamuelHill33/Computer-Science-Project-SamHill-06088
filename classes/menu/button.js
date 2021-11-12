@@ -1,5 +1,6 @@
 class Button {
-    constructor(sourceImage, buttonX, buttonY, buttonWidth, buttonHeight) {
+    constructor(name, sourceImage, buttonX, buttonY, buttonWidth, buttonHeight) {
+        this.name = name;
         this.sourceImage = sourceImage;
         this.buttonX = buttonX;
         this.buttonY = buttonY;
@@ -12,6 +13,10 @@ class Button {
         return this.hover;
     }
 
+    getName() {
+        return this.name;
+    }
+
     draw() {
         if ( //checks if mouse is within level square
             mouseX > this.buttonX &&
@@ -21,9 +26,11 @@ class Button {
         ) {
             stroke(200, 50, 50);
             this.hover = true; 
+            activeButton = this.name;
         } else {
             stroke(20);
             this.hover = false;
+            activeButton = null;
         }
 
         strokeWeight(3);

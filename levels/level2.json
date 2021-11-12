@@ -1,0 +1,68 @@
+{
+    "name": "level2",
+    
+    "mazeMap": [
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 1, 0, 0, 0, 0, 0, 1, 0, 1]
+    ],
+
+    "player": {
+        "gridRefX": 9,
+        "gridRefY": 9
+    },
+
+    "bot": {
+        "speed": 80,
+        "image": "",
+        "bots": [
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            },
+            {
+                "gridRefX": 3,
+                "gridRefY": 3
+            }
+        ]
+    }
+}

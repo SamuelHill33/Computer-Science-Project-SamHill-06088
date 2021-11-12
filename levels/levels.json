@@ -23,7 +23,7 @@
         {
             "name": "level5",
             "text": "blah de blah",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
+            "imageURL": "http://127.0.0.1:5500/assets/doorOpened.png"
         },
         {
             "name": "level6",

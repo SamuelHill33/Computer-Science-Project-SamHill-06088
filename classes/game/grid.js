@@ -1,6 +1,6 @@
 class Grid {
     tilesMap = new Map();
-    constructor(mazeMap) {
+    constructor(mazeMap, size) {
         this.mazeMapDimension = mazeMap.length;
         this.doorTiles = [];
 

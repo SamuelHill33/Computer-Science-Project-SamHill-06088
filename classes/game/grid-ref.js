@@ -14,11 +14,11 @@ class GridRef { //a class that instantiates a coordinate pair object
     }
 
     getXTilePos() {
-        return this.xTileRef * size;
+        return this.xTileRef * this.size;
     }
 
     getYTilePos() {
-        return this.yTileRef * size;
+        return this.yTileRef * this.size;
     }
 
     getID() {
