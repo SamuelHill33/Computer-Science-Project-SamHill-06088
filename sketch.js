@@ -18,7 +18,9 @@ function preload() { //function executes once on startup
     doorTileClosedImage = loadImage('http://127.0.0.1:5500/assets/doorClosed.png');
     doorTileOpenImage = loadImage('http://127.0.0.1:5500/assets/doorOpened.png');
     teleportTileImage = loadImage('http://127.0.0.1:5500/assets/teleport.png');
-
+    targetTileImage = loadImage('http://127.0.0.1:5500/assets/target.png');
+    exitTileImage = loadImage('http://127.0.0.1:5500/assets/exit.png');
+    
     menuData = loadJSON('http://127.0.0.1:5500/levels/levels.json', loadLevels);
 
     // level1PreviewImage = teleportTileImage;

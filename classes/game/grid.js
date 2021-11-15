@@ -27,7 +27,9 @@ class Grid {
                         tile.setOtherTile(teleportTile);
                         teleportTile.setOtherTile(tile);
                     }
-                } 
+                } else if (mazeMap[i][j] == 5) {
+                    var tile = new TargetTile(gridRef, size, targetTileImage);
+                }
 
                 this.tilesMap.set(tile.getID(), tile); //adds new tile to the tiles map
             }
