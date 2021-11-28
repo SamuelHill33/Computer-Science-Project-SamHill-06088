@@ -2,10 +2,15 @@ class ExitTile extends Tile {
     constructor(gridRef, size, sourceImage, color) {
         super(gridRef, size, color);
         this.sourceImage = sourceImage;
+        this.exitable = false;
     }
 
     isEntrable() {
         return true;
+    }
+
+    setExitable() {
+        this.exitable = true;
     }
 
     draw() {
@@ -16,7 +21,12 @@ class ExitTile extends Tile {
     }
 
     executeInteract() {
+        if (this.exitable) {
+            console.log("exited! - success");
+        } else {
+            console.log("exited! - fail");
+        }
 
-        console.log("exited!");
+        switchScreen();
     }
 }

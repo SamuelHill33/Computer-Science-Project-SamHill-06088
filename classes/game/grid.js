@@ -3,6 +3,7 @@ class Grid {
     constructor(mazeMap, size) {
         this.mazeMapDimension = mazeMap.length;
         this.doorTiles = [];
+        this.exitTile;
 
         let teleportTile;
 
@@ -28,9 +29,10 @@ class Grid {
                         teleportTile.setOtherTile(tile);
                     }
                 } else if (mazeMap[i][j] == 5) {
-                    var tile = new TargetTile(gridRef, size, targetTileImage);
+                    var tile = new TargetTile(gridRef, size, chestTileClosedImage);
                 } else if (mazeMap[i][j] == 6) {
                     var tile = new ExitTile(gridRef, size, exitTileImage);
+                    this.exitTile = tile;
                 } else {
                     console.log("error - attempting to load tile that does not exist");
                 }
@@ -118,5 +120,7 @@ class Grid {
         }
     }
 
-    
+    setExitable() {
+        this.exitTile.setExitable()
+    }
 }

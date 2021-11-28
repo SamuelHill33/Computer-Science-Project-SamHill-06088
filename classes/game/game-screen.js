@@ -2,6 +2,13 @@ let userImage;
 let botImage;
 let timer = 0;
 
+const botDirection = {
+    LEFT: "left",
+    RIGHT: "right",
+    UP: "up",
+    DOWN: "down"
+}
+
 class GameScreen extends Screen {
     constructor(name) {
         super(name);

@@ -8,6 +8,10 @@ class TargetTile extends Tile {
         return true;
     }
 
+    setSourceImage(newSourceImage) {
+        this.sourceImage = newSourceImage;
+    }
+
     draw() {
         fill(this.color); //colours tile
         stroke(180); //outlines tile
@@ -15,7 +19,10 @@ class TargetTile extends Tile {
         image(this.sourceImage, this.gridRef.getXTilePos(), this.gridRef.getYTilePos(), this.size, this.size);
     }
 
-    executeInteract() {
+    executeInteract(screen) {
+        screen.getGrid().setExitable();
+        this.setSourceImage(chestTileOpenImage);
+        this.draw();
         console.log("target complete");
     }
 }
