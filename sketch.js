@@ -29,15 +29,13 @@ function preload() { //function executes once on startup
 }
 
 function setup() { //function executes once on startup
-    createCanvas(640, 680); //sets canvas size to array size
-    background(220, 230, 240);
-    //gameScreen = new GameScreen("level1", 10);
+    createCanvas(640, 680);
     menuScreen = new MenuScreen("menu");
 }
 
 function draw() { //function executes every tick
-    if (gameScreen != null) {
-        gameScreen.draw();
+    if (gameScreen != null) { //if screen is not active
+        gameScreen.draw(); //activate screen
     }
     if (menuScreen != null) {
         menuScreen.draw();
@@ -46,22 +44,20 @@ function draw() { //function executes every tick
 
 function mousePressed() {
     if (menuScreen != null) {
-        if (menuScreen.loadScreen()) {
+        if (menuScreen.loadScreen()) { //check if cursor is above button
             menuScreen = null;
         }
     }
 }
 
-function loadLevels(_menuData) {
-    for (let i = 0; i < _menuData.levels.length; i++) {
-        imageMap.set(_menuData.levels[i].name, loadImage(_menuData.levels[i].imageURL));
-        gameData = loadJSON('http://127.0.0.1:5500/levels/' + _menuData.levels[i].name + '.json', loadGame);
+function loadLevels(_menuData) { //loads the json files for each specific level using the levels json file
+    for (let i = 0; i < _menuData.levels.length; i++) { //for each level states within the levels json file
+        imageMap.set(_menuData.levels[i].name, loadImage(_menuData.levels[i].imageURL)); //adds preview image for said level to map
+        gameData = loadJSON('http://127.0.0.1:5500/levels/' + _menuData.levels[i].name + '.json', loadGame); //loads json of individual level
     }
 }
 
 function loadGame(_gameData) {
-    console.log(_gameData);
-    console.log(gameMap);
-    gameMap.set(_gameData.name, _gameData);
+    gameMap.set(_gameData.name, _gameData); //creates map connecting level name to appropriate json data
 }
 

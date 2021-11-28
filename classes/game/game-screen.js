@@ -2,19 +2,12 @@ let userImage;
 let botImage;
 let timer = 0;
 
-const botDirection = {
-    LEFT: "left",
-    RIGHT: "right",
-    UP: "up",
-    DOWN: "down"
-}
-
 class GameScreen extends Screen {
     constructor(name) {
         super(name);
 
-        let gameData = gameMap.get(this.name); 
-        let tileSize = 640 / gameData.mazeMap.length;
+        let gameData = gameMap.get(this.name); //gets the grid information from the respective level
+        let tileSize = 640 / gameData.mazeMap.length; //appropriately scales tiles
         this.grid = new Grid(gameData.mazeMap, tileSize); //creates new grid object
         this.grid.draw();
 
@@ -23,7 +16,7 @@ class GameScreen extends Screen {
         this.player.draw();
 
         this.bots = [];
-        for (let i = 0; i < gameData.bot.bots.length; i++) {
+        for (let i = 0; i < gameData.bot.bots.length; i++) { //for the number of bots on the level
             let botGridRef = new GridRef(gameData.bot.bots[i].gridRefX, gameData.bot.bots[i].gridRefY, tileSize);
             this.bots[i] = new BotSprite(botImage, botGridRef, gameData.bot.speed, tileSize);
             this.bots[i].draw();

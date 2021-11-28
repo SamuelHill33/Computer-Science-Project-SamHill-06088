@@ -9,7 +9,7 @@ class Button {
         this.hover = false;
     }
 
-    isHover() {
+    isHover() { //is the cursor currently hovering over the button
         return this.hover;
     }
 
@@ -18,7 +18,7 @@ class Button {
     }
 
     draw() {
-        if ( //checks if mouse is within level square
+        if ( //checks if cursor is within level square
             mouseX > this.buttonX &&
             mouseX < this.buttonX + this.buttonWidth &&
             mouseY > this.buttonY &&

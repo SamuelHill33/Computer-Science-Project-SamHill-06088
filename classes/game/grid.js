@@ -29,6 +29,10 @@ class Grid {
                     }
                 } else if (mazeMap[i][j] == 5) {
                     var tile = new TargetTile(gridRef, size, targetTileImage);
+                } else if (mazeMap[i][j] == 6) {
+                    var tile = new ExitTile(gridRef, size, exitTileImage);
+                } else {
+                    console.log("error - attempting to load tile that does not exist");
                 }
 
                 this.tilesMap.set(tile.getID(), tile); //adds new tile to the tiles map

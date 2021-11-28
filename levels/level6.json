@@ -42,7 +42,7 @@
     },
 
     "bot": {
-        "speed": 40,
+        "speed": 25,
         "image": "",
         "bots": [
             {

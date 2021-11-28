@@ -2,52 +2,32 @@
     "levels": [
         {
             "name": "level1",
-            "text": "blah de blah",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
+            "text": "Tutorial",
+            "imageURL": "http://127.0.0.1:5500/assets/doorOpened.png"
         },
         {
             "name": "level2",
-            "text": "blah de blah",
+            "text": "Level 1",
             "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
         },
         {
             "name": "level3",
-            "text": "blah de blah",
+            "text": "Level 2",
             "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
         },
         {
             "name": "level4",
-            "text": "blah de blah",
+            "text": "Level 3",
             "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
         },
         {
             "name": "level5",
-            "text": "blah de blah",
-            "imageURL": "http://127.0.0.1:5500/assets/doorOpened.png"
+            "text": "Level 4",
+            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
         },
         {
             "name": "level6",
-            "text": "blah de blah",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
-        },
-        {
-            "name": "level7",
-            "text": "blah de blah",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
-        },
-        {
-            "name": "level8",
-            "text": "blah de blah",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
-        },
-        {
-            "name": "level9",
-            "text": "blah de blah",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
-        },
-        {
-            "name": "level10",
-            "text": "blah de blah",
+            "text": "Level 5",
             "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
         }
     ]
