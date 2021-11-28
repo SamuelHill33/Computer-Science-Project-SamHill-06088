@@ -1,5 +1,7 @@
 {
     "name": "level2",
+
+    "timeLimit": 60,
     
     "mazeMap": [
         [5, 1, 1, 1, 0, 1, 0, 1],

@@ -13,6 +13,8 @@ class GameScreen extends Screen {
     constructor(name) {
         super(name);
 
+        timer = 0;
+
         let gameData = gameMap.get(this.name); //gets the grid information from the respective level
         let tileSize = 640 / gameData.mazeMap.length; //appropriately scales tiles
         this.grid = new Grid(gameData.mazeMap, tileSize); //creates new grid object
@@ -28,6 +30,8 @@ class GameScreen extends Screen {
             this.bots[i] = new BotSprite(botImage, botGridRef, gameData.bot.speed, tileSize);
             this.bots[i].draw();
         }
+
+        this.startScore = gameData.timeLimit * 50;
     }
 
     getPlayer() {
@@ -40,6 +44,7 @@ class GameScreen extends Screen {
 
     draw() { //function executes every tick
         timer++;
+        console.log(this.startScore - timer);
 
         if (this.bots[0] !== undefined && this.bots[0].shouldMove()) { //if there is at least one bot and bot(s) should move
             this.grid.reinitialize(); //clear all sight tiles back to empty tiles
@@ -69,4 +74,13 @@ class GameScreen extends Screen {
 
         this.player.dieIfNecessary(this.grid); //determine if player should die
     }
+
+    updateScore() {
+        let score = this.startScore - timer;
+        if (score > scoreMap.get(this.name)) {
+            scoreMap.set(this.name, score);
+        }
+    }
+
+    
 }

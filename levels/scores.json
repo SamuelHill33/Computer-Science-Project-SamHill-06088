@@ -1,0 +1,28 @@
+{
+    "levels": [
+        {
+            "name": "level1",
+            "score": 0
+        },
+        {
+            "name": "level2",
+            "score": 0
+        },
+        {
+            "name": "level3",
+            "score": 0
+        },
+        {
+            "name": "level4",
+            "score": 0
+        },
+        {
+            "name": "level5",
+            "score": 0
+        },
+        {
+            "name": "level6",
+            "score": 0
+        }
+    ]
+}

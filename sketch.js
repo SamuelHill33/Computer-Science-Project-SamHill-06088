@@ -2,11 +2,13 @@ let gameScreen;
 let menuScreen;
 let imageMap = new Map();
 let gameMap = new Map();
+let scoreMap = new Map();
 
 function switchScreen() {
     if (gameScreen != null) {
         clear();
-        menuScreen = new MenuScreen("menu");
+        gameScreen.updateScore();
+        menuScreen = new MenuScreen("menu");  
         gameScreen = null;
     }
 }
@@ -56,9 +58,21 @@ function loadLevels(_menuData) { //loads the json files for each specific level 
         imageMap.set(_menuData.levels[i].name, loadImage(_menuData.levels[i].imageURL)); //adds preview image for said level to map
         gameData = loadJSON('http://127.0.0.1:5500/levels/' + _menuData.levels[i].name + '.json', loadGame); //loads json of individual level
     }
+
+    scoreData = loadJSON('http://127.0.0.1:5500/levels/scores.json', loadScores);
 }
 
 function loadGame(_gameData) {
     gameMap.set(_gameData.name, _gameData); //creates map connecting level name to appropriate json data
+}
+
+function loadScores(_scoreData) {
+    for (let i = 0; i < menuData.levels.length; i++) { //for each level states within the levels json file
+        scoreMap.set(menuData.levels[i].name, 0);
+    }
+
+    for (let i = 0; i < _scoreData.levels.length; i++) {
+        scoreMap.set(_scoreData.levels[i].name, _scoreData.levels[i].score);
+    }
 }
 
