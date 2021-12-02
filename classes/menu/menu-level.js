@@ -1,16 +1,30 @@
 class MenuLevel {
     constructor(name, sourceImage, buttonX, buttonY, buttonWidth, buttonHeight, text) {
-        this.text = new Text(buttonX + buttonWidth + 10, buttonY + 20, buttonHeight - 10, text);
-        this.button = new Button(name, sourceImage, buttonX, buttonY, buttonWidth, buttonHeight);
+        this.name = name;
+        this.sourceImage = sourceImage;
+        this.buttonX = buttonX;
+        this.buttonY = buttonY;
+        this.buttonWidth = buttonWidth;
+        this.buttonHeight = buttonHeight;
+        this.text = text;
+        this.levelButton = new Button(name, sourceImage, buttonX, buttonY, buttonWidth, buttonHeight);
     }
 
     draw() {
-        this.button.draw();
-        this.text.draw();
+        this.levelButton.draw();
+
+        textAlign(CENTER, CENTER);
+        textSize(17);
+        noStroke();
+        textStyle(BOLD);
+        fill(20);
+        for (let i = 0; i < this.text.length; i++) {
+            text(this.text[i], this.buttonX + this.buttonWidth + 10, this.buttonY +  20 + (i * 30), this.buttonHeight - 10);
+        }
     }
 
-    getButton() {
-        return this.button;
+    getLevelButton() {
+        return this.levelButton;
     }
 
     getText() {

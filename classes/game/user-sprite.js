@@ -53,12 +53,28 @@ class UserSprite extends Sprite {
         let playerTile = grid.getTile(this.getGridRef());
         if (playerTile.isDeathTile()) {
             this.#die();
+            return true;
         }
+
+        return false;
     }
 
     #die() {
         console.log("player died");
-        //alert("stop");
+        
+        deathGraphics.fill(255, 0, 0);
+        deathGraphics.textSize(90);
+        deathGraphics.stroke(20);
+        deathGraphics.textStyle(BOLD);
+        deathGraphics.strokeWeight(2);
+        deathGraphics.textAlign(CENTER, CENTER);
+        deathGraphics.text("You Died", 320, 320);
+        
+        deathGraphics.noStroke();
+        let c = color(100, 100);
+        deathGraphics.fill(c);
+        deathGraphics.rect(0, 0, 640, 680);
+        image(deathGraphics, 0, 0);
     }
 
     interact() {

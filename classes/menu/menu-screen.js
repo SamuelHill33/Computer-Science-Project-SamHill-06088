@@ -18,8 +18,10 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
             }
         }
 
-        console.log(scoreData);
-        this.saveButton = new MenuLevel("save", teleportTileImage, 100, 600, 100, 50, ["Download Scores"]);
+        this.saveButton = new Button("save", null, 100, 580, 150, 50, "Download Scores");
+        this.muteButton = new Button("mute", null, 450, 580, 50, 50);
+        this.input = createFileInput(this.#handleFile);
+        this.input.position(220, 8);
     }
 
     draw() {
@@ -27,27 +29,31 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
 
         textSize(70);
         textAlign(CENTER, CENTER);
-        text("Maze Game", 300, 70, this.textWidth);
+        strokeWeight(3);
+        text("Maze Game", 300, 70); //title
 
-        for (let menuLevel of this.menuLevels) {
-            menuLevel.draw();
+        for (let menuLevel of this.menuLevels) { //level button and text next to it
+            menuLevel.draw(); 
         }
 
-        this.saveButton.draw();
+        this.saveButton.draw(); //download scores button
+        this.muteButton.draw();
+        textSize(23);
+        strokeWeight(2);
+        text("Mute Sounds:", 370, 605); //title
     }
 
 
     loadScreen() { //loads the gamescreen when a level is selected
-        console.log("abc");
         for (let menuLevel of this.menuLevels) {
-            if (menuLevel.getButton().isHover()) { //if the mouse cursor is over a button
+            if (menuLevel.getLevelButton().isHover()) { //if the mouse cursor is over a button
                 clear();
-                gameScreen = new GameScreen(menuLevel.getButton().getName());
+                gameScreen = new GameScreen(menuLevel.getLevelButton().getName());
                 return true;
             }
         }
 
-        if (this.saveButton.getButton().isHover()) { //if the mouse cursor is over a button
+        if (this.saveButton.isHover()) { //if the mouse cursor is over a button
             for (let i = 0; i < scoreData.levels.length; i++) {
                 scoreData.levels[i].score = scoreMap.get(scoreData.levels[i].name);
             }
@@ -69,8 +75,15 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
             return "⭐⭐⭐";
         } else if (score > 0.2 * timeLimit * 50) {
             return "⭐⭐";
+        } else if (score > 0) {
+            return "⭐";
         }
 
-        return "⭐";
+        return "";
     }
+
+    #handleFile(file) {
+        print(file);
+        
+      }
 }

@@ -1,11 +1,12 @@
 class Button {
-    constructor(name, sourceImage, buttonX, buttonY, buttonWidth, buttonHeight) {
+    constructor(name, sourceImage, buttonX, buttonY, buttonWidth, buttonHeight, text) {
         this.name = name;
         this.sourceImage = sourceImage;
         this.buttonX = buttonX;
         this.buttonY = buttonY;
         this.buttonWidth = buttonWidth;
         this.buttonHeight = buttonHeight;
+        this.text = text;
         this.hover = false;
     }
 
@@ -36,7 +37,17 @@ class Button {
         strokeWeight(3);
         fill(150);
         rect(this.buttonX, this.buttonY, this.buttonWidth, this.buttonHeight);
-        image(this.sourceImage, this.buttonX, this.buttonY, this.buttonWidth, this.buttonHeight);
+
+        if (this.sourceImage != null) {
+            image(this.sourceImage, this.buttonX, this.buttonY, this.buttonWidth, this.buttonHeight);
+        }
+
+        fill(255);
+        textSize(17);
+        stroke(20);
+        textStyle(NORMAL);
+        strokeWeight(2);
+        text(this.text, this.buttonX + (this.buttonWidth / 2), this.buttonY + (this.buttonHeight / 2));
     }
 
     execute() {

@@ -32,6 +32,8 @@ class GameScreen extends Screen {
         }
 
         this.startScore = gameData.timeLimit * 50;
+        this.stopped = false;
+        this.deathTimer = timer;
     }
 
     getPlayer() {
@@ -42,10 +44,11 @@ class GameScreen extends Screen {
         return this.grid;
     }
 
-    draw() { //function executes every tick
+    incrementTimer() {
         timer++;
-        console.log(this.startScore - timer);
+    }
 
+    draw() { //function executes every tick
         if (this.bots[0] !== undefined && this.bots[0].shouldMove()) { //if there is at least one bot and bot(s) should move
             this.grid.reinitialize(); //clear all sight tiles back to empty tiles
 
@@ -72,7 +75,10 @@ class GameScreen extends Screen {
             tile.interact(this);
         }
 
-        this.player.dieIfNecessary(this.grid); //determine if player should die
+        this.stopped = this.player.dieIfNecessary(this.grid); //determine if player should die
+        if (this.stopped) {
+            this.deathTimer = timer;
+        }
     }
 
     updateScore() {
@@ -82,5 +88,16 @@ class GameScreen extends Screen {
         }
     }
 
+    isStopped() {
+        return this.stopped;
+    }
+
+    deathTimerEnded() {
+        if (this.deathTimer + 100 < timer) {
+            return true;
+        }
+
+        return false;
+    }
     
 }

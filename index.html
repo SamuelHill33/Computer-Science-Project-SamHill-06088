@@ -23,14 +23,14 @@
     <script src="classes/menu/menu-screen.js"></script>
     <script src="classes/menu/button.js"></script>
     <script src="classes/menu/menu-level.js"></script>
-    <script src="classes/menu/text.js"></script>
-    
-    
 </head>
-<body>
-
-    <div>Maze Game!</div>
-    <input id="switchscreenbtn" type="submit" name="button" onclick="switchScreen();" value="switch screen"/>
-
+<body onload="listenForScores()">
+    <!--<input id="switchscreenbtn" type="submit" name="button" onclick="switchScreen();" value="switch screen"/>-->
+    <form enctype="multipart/form-data" method="post">
+        <input id="muteBtn" type="submit" name="button" onclick="mute();" value="Mute Audio"/>
+        <input id="downloadScoresBtn" type="submit" name="button" onclick="downloadScores();" value="Download Scores"/>
+        <input id="uploadScoresBtn" type="file" name="filename">
+        <input type='button' id='btnLoad' value='Load' onclick='loadScores();'>
+    </form>
 </body>
 </html>
