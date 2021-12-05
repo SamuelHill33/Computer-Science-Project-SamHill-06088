@@ -13,6 +13,10 @@ class ExitTile extends Tile {
         this.exitable = true;
     }
 
+    isExitable() {
+        return this.exitable;
+    }
+
     draw() {
         fill(this.color); //colours tile
         stroke(180); //outlines tile
@@ -22,9 +26,9 @@ class ExitTile extends Tile {
 
     executeInteract() {
         if (this.exitable) {
-            console.log("exited! - success");
+            console.log("success");
         } else {
-            console.log("exited! - fail");
+            console.log("failure");
         }
 
         switchScreen();
