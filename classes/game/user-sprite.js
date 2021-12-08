@@ -49,9 +49,9 @@ class UserSprite extends Sprite {
         }
     }
 4
-    dieIfNecessary(grid) {
+    dieIfNecessary(grid, screen) {
         let playerTile = grid.getTile(this.getGridRef());
-        if (playerTile.isDeathTile()) {
+        if (playerTile.isDeathTile() || screen.hasTimerExpired()) {
             this.#die();
             return true;
         }

@@ -1,4 +1,4 @@
-class TargetTile extends Tile {
+class TreasureTile extends Tile {
     constructor(gridRef, size, sourceImage, color) {
         super(gridRef, size, color);
         this.sourceImage = sourceImage;
@@ -23,6 +23,7 @@ class TargetTile extends Tile {
         screen.getGrid().setExitable();
         this.setSourceImage(chestTileOpenImage);
         this.draw();
+        screen.setTreasureRetrieved(true);
         console.log("target complete");
     }
 }

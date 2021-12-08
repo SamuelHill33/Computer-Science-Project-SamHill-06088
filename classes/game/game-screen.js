@@ -12,6 +12,7 @@ const botDirection = {
 class GameScreen extends Screen {
     constructor(name) {
         super(name);
+        background(150); //set background color
 
         timer = 0;
 
@@ -34,6 +35,7 @@ class GameScreen extends Screen {
         this.startScore = gameData.timeLimit * 50;
         this.stopped = false;
         this.deathTimer = timer;
+        this.treasureRetrieved = false;
     }
 
     getPlayer() {
@@ -44,11 +46,22 @@ class GameScreen extends Screen {
         return this.grid;
     }
 
+    setTreasureRetrieved(treasureRetrieved) {
+        this.treasureRetrieved = treasureRetrieved;
+    }
+
     incrementTimer() {
         timer++;
     }
 
     draw() { //function executes every tick
+        var currentSeconds = Math.ceil((this.startScore - timer) / 50);
+
+        if (this.seconds != currentSeconds) {
+            this.seconds = currentSeconds;
+            this.updateOnScreenTimer(currentSeconds);
+        }
+
         if (this.bots[0] !== undefined && this.bots[0].shouldMove()) { //if there is at least one bot and bot(s) should move
             this.grid.reinitialize(); //clear all sight tiles back to empty tiles
 
@@ -75,15 +88,17 @@ class GameScreen extends Screen {
             tile.interact(this);
         }
 
-        this.stopped = this.player.dieIfNecessary(this.grid); //determine if player should die
+        this.stopped = this.player.dieIfNecessary(this.grid, this); //determine if player should die
         if (this.stopped) {
             this.deathTimer = timer;
         }
+        
+        
     }
 
     updateScore() {
         let score = this.startScore - timer;
-        if (score > scoreMap.get(this.name)) {
+        if (score > scoreMap.get(this.name) && this.treasureRetrieved) {
             scoreMap.set(this.name, score);
         }
     }
@@ -99,5 +114,19 @@ class GameScreen extends Screen {
 
         return false;
     }
-    
+
+    hasTimerExpired() {
+        return this.seconds <= 0;
+    }
+
+    updateOnScreenTimer(seconds) {
+        fill(150);
+        rect(0, 640, 640, 40);
+
+        textSize(32);
+        fill(200, 0, 0);
+        textStyle(BOLD);
+        textAlign(CENTER, CENTER);
+        text("Timer: " + seconds, 320, 660);
+    }
 }

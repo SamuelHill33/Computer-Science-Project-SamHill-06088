@@ -23,11 +23,19 @@ class MenuLevel {
         }
     }
 
+    getName() {
+        return this.name;
+    }
+
     getLevelButton() {
         return this.levelButton;
     }
 
     getText() {
         return this.text;
+    }
+
+    setText(text) {
+        this.text = text;
     }
 }

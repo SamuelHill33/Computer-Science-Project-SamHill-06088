@@ -5,32 +5,6 @@ let gameMap = new Map();
 let scoreMap = new Map();
 let deathGraphics;
 
-function listenForScores() {
-    console.log("listening");
-    let fileInput = document.getElementById('uploadScoresBtn');
-    console.log(fileInput.id);
-    fileInput.onchange = () => {
-        console.log("change");
-        const reader = new FileReader()
-        reader.onload = (e) => console.log('file contents:', e.target.result)
-      
-        for (let file of fileInput.files) {
-          reader.readAsText(file)
-        }
-      }
-}
-
-function loadScores() {
-    let fileInput = document.getElementById('uploadScoresBtn');
-    file = fileInput.files[0];
-    console.log("blah de blah");
-    console.log("balh" + file);
-    console.log("heheh");
-    const reader = new FileReader();
-    reader.onload = loadJson;
-    //reader.readAsText(file);
-}
-
 function loadJson(e) {
     let lines = e.target.result;
     var _scoreData = JSON.parse(lines);
@@ -125,5 +99,13 @@ function loadScoreMap(_scoreData) {
     for (let i = 0; i < _scoreData.levels.length; i++) {
         scoreMap.set(_scoreData.levels[i].name, _scoreData.levels[i].score);
     }
+}
+
+function downloadScores() {
+    for (let i = 0; i < scoreData.levels.length; i++) {
+        scoreData.levels[i].score = scoreMap.get(scoreData.levels[i].name);
+    }
+
+    saveJSON(scoreData, "scores.json");
 }
 

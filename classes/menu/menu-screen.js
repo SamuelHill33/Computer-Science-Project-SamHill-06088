@@ -18,8 +18,6 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
             }
         }
 
-        this.saveButton = new Button("save", null, 100, 580, 150, 50, "Download Scores");
-        this.muteButton = new Button("mute", null, 450, 580, 50, 50);
         this.input = createFileInput(this.#handleFile);
         this.input.position(220, 8);
     }
@@ -33,16 +31,12 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
         text("Maze Game", 300, 70); //title
 
         for (let menuLevel of this.menuLevels) { //level button and text next to it
+            let menuLevelName = menuLevel.getName();
+            let textArray = [menuLevel.getText()[0], "Score: " + scoreMap.get(menuLevelName), this.#getStars(menuLevelName)];
+            menuLevel.setText(textArray);
             menuLevel.draw(); 
         }
-
-        this.saveButton.draw(); //download scores button
-        this.muteButton.draw();
-        textSize(23);
-        strokeWeight(2);
-        text("Mute Sounds:", 370, 605); //title
     }
-
 
     loadScreen() { //loads the gamescreen when a level is selected
         for (let menuLevel of this.menuLevels) {
@@ -51,14 +45,6 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
                 gameScreen = new GameScreen(menuLevel.getLevelButton().getName());
                 return true;
             }
-        }
-
-        if (this.saveButton.isHover()) { //if the mouse cursor is over a button
-            for (let i = 0; i < scoreData.levels.length; i++) {
-                scoreData.levels[i].score = scoreMap.get(scoreData.levels[i].name);
-            }
-        
-            saveJSON(scoreData, "scores.json");
         }
 
         return false;
@@ -83,7 +69,12 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
     }
 
     #handleFile(file) {
-        print(file);
-        
-      }
+        let scoreData = file.data;
+
+        for (let i = 0; i < scoreData.levels.length; i++) {
+            scoreMap.set(scoreData.levels[i].name, scoreData.levels[i].score);
+        }
+
+        console.log(scoreMap);
+    }
 }

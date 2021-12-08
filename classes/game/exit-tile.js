@@ -29,6 +29,7 @@ class ExitTile extends Tile {
             console.log("success");
         } else {
             console.log("failure");
+            
         }
 
         switchScreen();

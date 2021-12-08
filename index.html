@@ -12,7 +12,7 @@
     <script src="classes/game/user-sprite.js"></script>
     <script src="classes/game/empty-tile.js"></script>
     <script src="classes/game/exit-tile.js"></script>
-    <script src="classes/game/target-tile.js"></script>
+    <script src="classes/game/treasure-tile.js"></script>
     <script src="classes/game/wall-tile.js"></script>
     <script src="classes/game/teleport-tile.js"></script>
     <script src="classes/game/door-tile.js"></script>
@@ -24,13 +24,9 @@
     <script src="classes/menu/button.js"></script>
     <script src="classes/menu/menu-level.js"></script>
 </head>
-<body onload="listenForScores()">
+<body>
     <!--<input id="switchscreenbtn" type="submit" name="button" onclick="switchScreen();" value="switch screen"/>-->
-    <form enctype="multipart/form-data" method="post">
-        <input id="muteBtn" type="submit" name="button" onclick="mute();" value="Mute Audio"/>
-        <input id="downloadScoresBtn" type="submit" name="button" onclick="downloadScores();" value="Download Scores"/>
-        <input id="uploadScoresBtn" type="file" name="filename">
-        <input type='button' id='btnLoad' value='Load' onclick='loadScores();'>
-    </form>
+    <input id="muteBtn" type="submit" name="button" onclick="mute();" value="Mute Audio"/>
+    <input id="downloadScoresBtn" type="submit" name="button" onclick="downloadScores();" value="Download Scores"/>
 </body>
 </html>

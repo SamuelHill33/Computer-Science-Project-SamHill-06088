@@ -29,7 +29,7 @@ class Grid {
                         teleportTile.setOtherTile(tile);
                     }
                 } else if (mazeMap[i][j] == 5) {
-                    var tile = new TargetTile(gridRef, size, chestTileClosedImage);
+                    var tile = new TreasureTile(gridRef, size, chestTileClosedImage);
                 } else if (mazeMap[i][j] == 6) {
                     var tile = new ExitTile(gridRef, size, exitTileImage);
                     this.exitTile = tile;
