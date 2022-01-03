@@ -100,11 +100,7 @@ function loadGame(_gameData) {
 
 function loadScoreMap(_scoreData) {
     for (let i = 0; i < menuData.levels.length; i++) { //for each level states within the levels json file
-        scoreMap.set(menuData.levels[i].name, 0);
-    }
-
-    for (let i = 0; i < _scoreData.levels.length; i++) {
-        scoreMap.set(_scoreData.levels[i].name, _scoreData.levels[i].score);
+        scoreMap.set(menuData.levels[i].name, 0); //set the levels score to 0
     }
 }
 
