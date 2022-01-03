@@ -22,7 +22,7 @@ class GameScreen extends Screen {
         this.grid.draw();
 
         let playerGridRef = new GridRef(gameData.player.gridRefX, gameData.player.gridRefY, tileSize); //creates players starting grid ref
-        this.player = new UserSprite(userImage, playerGridRef, 10, tileSize); //creates player sprite
+        this.player = new UserSprite(playerLeftImage, playerGridRef, 10, tileSize); //creates player sprite
         this.player.draw();
 
         this.bots = [];
@@ -120,13 +120,19 @@ class GameScreen extends Screen {
     }
 
     updateOnScreenTimer(seconds) {
-        fill(150);
+        fill(255);
+        stroke(255);
         rect(0, 640, 640, 40);
+
+        fill(0);
+        textSize(16);
+        text("w = up | s = down | a = left | d = right | e = interact", 195, 660);
 
         textSize(32);
         fill(200, 0, 0);
         textStyle(BOLD);
         textAlign(CENTER, CENTER);
-        text("Timer: " + seconds, 320, 660);
+        text("Timer: " + seconds, 560, 660);
+        console.log(seconds);
     }
 }

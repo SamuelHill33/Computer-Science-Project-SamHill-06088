@@ -3,32 +3,32 @@
         {
             "name": "level1",
             "text": "Tutorial",
-            "imageURL": "http://127.0.0.1:5500/assets/doorOpened.png"
+            "imageURL": "http://127.0.0.1:5500/assets/level1Preview.png"
         },
         {
             "name": "level2",
             "text": "Level 1",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
+            "imageURL": "http://127.0.0.1:5500/assets/level2Preview.png"
         },
         {
             "name": "level3",
             "text": "Level 2",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
+            "imageURL": "http://127.0.0.1:5500/assets/level3Preview.png"
         },
         {
             "name": "level4",
             "text": "Level 3",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
+            "imageURL": "http://127.0.0.1:5500/assets/level4Preview.png"
         },
         {
             "name": "level5",
             "text": "Level 4",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
+            "imageURL": "http://127.0.0.1:5500/assets/level5Preview.png"
         },
         {
             "name": "level6",
             "text": "Level 5",
-            "imageURL": "http://127.0.0.1:5500/assets/teleport.png"
+            "imageURL": "http://127.0.0.1:5500/assets/level6Preview.png"
         }
     ]
 }

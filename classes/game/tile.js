@@ -3,7 +3,7 @@ class Tile { //a class that instantiates a tile object
         this.gridRef = gridRef;
         this.size = size;
         this.deathTile = false;
-        this.color = 200;
+        this.color = [150];
         this.time = timer;
         this.coolDownPeriod = 15;
     }
@@ -20,9 +20,9 @@ class Tile { //a class that instantiates a tile object
         this.deathTile = isDeathTile;
 
         if (this.deathTile) { //if the tile has transitioned to an empty tile (if the tile is a sight tile) 
-            this.color = 150;
+            this.color = [150, 80, 80];
         } else {
-            this.color = 200;
+            this.color = [150];
         }
 
         this.draw();

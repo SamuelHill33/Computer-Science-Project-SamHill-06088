@@ -16,7 +16,9 @@ class ButtonTile extends Tile {
     }
 
     executeInteract(screen) {
+        switchSound.play();
         screen.getGrid().openDoors();
+        this.setSourceImage(switchTileOpenedImage)
     }
 
     getSourceImage() {

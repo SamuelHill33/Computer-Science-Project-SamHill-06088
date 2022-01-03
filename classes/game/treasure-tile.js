@@ -20,6 +20,7 @@ class TreasureTile extends Tile {
     }
 
     executeInteract(screen) {
+        treasureSound.play();
         screen.getGrid().setExitable();
         this.setSourceImage(chestTileOpenImage);
         this.draw();

@@ -7,6 +7,8 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
         let buttonX = 50; 
         let buttonY = 150;
 
+        image(menuBackgroundImage);
+
         for (let i = 0; i < menuData.levels.length; i++) { //for each level
             let textArray = [menuData.levels[i].text, "Score: " + scoreMap.get(menuData.levels[i].name), this.#getStars(menuData.levels[i].name)];
             this.menuLevels[i] = new MenuLevel(menuData.levels[i].name, imageMap.get(menuData.levels[i].name), buttonX, buttonY, 120, 120, textArray);
@@ -23,12 +25,13 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
     }
 
     draw() {
-        background(220, 230, 240); //set background color
+        background(menuBackgroundImage); //set background color
 
-        textSize(70);
+        textSize(60);
         textAlign(CENTER, CENTER);
+        textStyle(BOLD);
         strokeWeight(3);
-        text("Maze Game", 300, 70); //title
+        text("Dungeon Escape", 310, 70); //title
 
         for (let menuLevel of this.menuLevels) { //level button and text next to it
             let menuLevelName = menuLevel.getName();
@@ -36,13 +39,21 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
             menuLevel.setText(textArray);
             menuLevel.draw(); 
         }
+
+        textAlign(CENTER, CENTER);
+        textStyle(BOLD);
+        text("How to play:", 310, 575);
+        textStyle(NORMAL);
+        text("Each level is a different dungeon where your goal is to retrieve the treasure and escape without being seen! The faster you complete the level, the higher your score.", 60, 600, 500);
     }
 
     loadScreen() { //loads the gamescreen when a level is selected
         for (let menuLevel of this.menuLevels) {
             if (menuLevel.getLevelButton().isHover()) { //if the mouse cursor is over a button
                 clear();
-                gameScreen = new GameScreen(menuLevel.getLevelButton().getName());
+                gameScreen = new GameScreen(menuLevel.getLevelButton().getName()); //instantiate gamescreen of selected level
+                levelSelectSound.play();
+                gameMusic.play();
                 return true;
             }
         }
@@ -51,9 +62,9 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
     }
 
     #getStars(screenName) {
-        let score = scoreMap.get(screenName);
-        let timeLimit = gameMap.get(screenName).timeLimit;
-        if (score > 0.8 * timeLimit * 50) {
+        let score = scoreMap.get(screenName); //gets players score from finished level
+        let timeLimit = gameMap.get(screenName).timeLimit; //gets level timelimit value
+        if (score > 0.8 * timeLimit * 50) { //if player finishes above 80% of level timelimit
             return "⭐⭐⭐⭐⭐";
         } else if (score > 0.6 * timeLimit * 50) {
             return "⭐⭐⭐⭐";
@@ -72,7 +83,7 @@ class MenuScreen extends Screen { //the class responsible for loading the conten
         let scoreData = file.data;
 
         for (let i = 0; i < scoreData.levels.length; i++) {
-            scoreMap.set(scoreData.levels[i].name, scoreData.levels[i].score);
+            scoreMap.set(scoreData.levels[i].name, scoreData.levels[i].score); //writes current players level scores to score map
         }
 
         console.log(scoreMap);

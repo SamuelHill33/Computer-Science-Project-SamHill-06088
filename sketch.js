@@ -23,21 +23,28 @@ function switchScreen() {
 }
 
 function preload() { //function executes once on startup
-    userImage = loadImage('http://127.0.0.1:5500/assets/player.png');
+    playerLeftImage = loadImage('http://127.0.0.1:5500/assets/playerLeft.png');
+    playerRightImage = loadImage('http://127.0.0.1:5500/assets/playerRight.png');
     botImage = loadImage('http://127.0.0.1:5500/assets/bot.png');
-    buttonTileImage = loadImage('http://127.0.0.1:5500/assets/button.png');
+    switchTileOpenedImage = loadImage('http://127.0.0.1:5500/assets/switchOpened.png');
+    switchTileClosedImage = loadImage('http://127.0.0.1:5500/assets/switchClosed.png');
     doorTileClosedImage = loadImage('http://127.0.0.1:5500/assets/doorClosed.png');
     doorTileOpenImage = loadImage('http://127.0.0.1:5500/assets/doorOpened.png');
     teleportTileImage = loadImage('http://127.0.0.1:5500/assets/teleport.png');
-    chestTileClosedImage = loadImage('http://127.0.0.1:5500/assets/closedChest.jpg');
+    chestTileClosedImage = loadImage('http://127.0.0.1:5500/assets/closedChest.png');
     chestTileOpenImage = loadImage('http://127.0.0.1:5500/assets/openChest.png');
     exitTileImage = loadImage('http://127.0.0.1:5500/assets/exit.png');
+    menuBackgroundImage = loadImage('http://127.0.0.1:5500/assets/menuBackground.jpg');
+
+    levelSelectSound = loadSound('http://127.0.0.1:5500/assets/levelSelect.wav');
+    teleportSound = loadSound('http://127.0.0.1:5500/assets/swoosh.mp3');
+    switchSound = loadSound('http://127.0.0.1:5500/assets/unlock.mp3');
+    treasureSound = loadSound('http://127.0.0.1:5500/assets/coins.wav');
+    winSound = loadSound('http://127.0.0.1:5500/assets/win.wav');
+    failSound = loadSound('http://127.0.0.1:5500/assets/fail.wav');
+    gameMusic = loadSound('http://127.0.0.1:5500/assets/gameMusic.mp3');
     
     menuData = loadJSON('http://127.0.0.1:5500/levels/levels.json', loadLevels);
-
-    // level1PreviewImage = teleportTileImage;
-    // level2PreviewImage = doorTileOpenImage;
-    // level3PreviewImage = buttonTileImage;
 }
 
 function setup() { //function executes once on startup

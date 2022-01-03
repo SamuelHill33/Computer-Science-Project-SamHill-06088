@@ -16,6 +16,7 @@ class TeleportTile extends Tile {
     }
 
     executeInteract(screen) {
+        teleportSound.play();
         let player = screen.getPlayer();
         player.setGridRef(this.otherTile.getGridRef());
         player.draw();

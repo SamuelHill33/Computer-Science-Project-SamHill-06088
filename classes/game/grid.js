@@ -19,7 +19,7 @@ class Grid {
                     var tile = new DoorTile(gridRef, size, doorTileClosedImage);
                     this.doorTiles.push(tile);
                 } else if (mazeMap[i][j] == 3) {
-                    var tile = new ButtonTile(gridRef, size, buttonTileImage);
+                    var tile = new ButtonTile(gridRef, size, switchTileClosedImage);
                 } else if (mazeMap[i][j] == 4) {
                     var tile = new TeleportTile(gridRef, size, teleportTileImage);
                     if (teleportTile == undefined) {

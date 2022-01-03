@@ -5,12 +5,18 @@ class UserSprite extends Sprite {
         super(sourceImage, gridRef, speed, size);
     }
 
+    setSourceImage(newSourceImage) {
+        this.sourceImage = newSourceImage;
+    }
+
     #newGridRef() {
         if (key == 'a') { //left
+            this.setSourceImage(playerLeftImage);
             return this.gridRef.getAdjacentLeftGridRef(); 
         }
     
         if (key == 'd') { //right
+            this.setSourceImage(playerRightImage);
             return this.gridRef.getAdjacentRightGridRef(); 
         }
         
@@ -61,6 +67,8 @@ class UserSprite extends Sprite {
 
     #die() {
         console.log("player died");
+        gameMusic.stop();
+        failSound.play();
         
         deathGraphics.fill(255, 0, 0);
         deathGraphics.textSize(90);
