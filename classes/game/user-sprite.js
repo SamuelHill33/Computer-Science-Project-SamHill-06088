@@ -66,7 +66,6 @@ class UserSprite extends Sprite {
     }
 
     #die() {
-        console.log("player died");
         gameMusic.stop();
         failSound.play();
         

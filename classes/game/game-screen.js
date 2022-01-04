@@ -59,7 +59,7 @@ class GameScreen extends Screen {
 
         if (this.seconds != currentSeconds) {
             this.seconds = currentSeconds;
-            this.updateOnScreenTimer(currentSeconds);
+            this.updateFooter(currentSeconds);
         }
 
         if (this.bots[0] !== undefined && this.bots[0].shouldMove()) { //if there is at least one bot and bot(s) should move
@@ -119,7 +119,7 @@ class GameScreen extends Screen {
         return this.seconds <= 0;
     }
 
-    updateOnScreenTimer(seconds) {
+    updateFooter(seconds) {
         fill(255);
         stroke(255);
         rect(0, 640, 640, 40);
@@ -133,6 +133,5 @@ class GameScreen extends Screen {
         textStyle(BOLD);
         textAlign(CENTER, CENTER);
         text("Timer: " + seconds, 560, 660);
-        console.log(seconds);
     }
 }

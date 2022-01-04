@@ -25,6 +25,5 @@ class TreasureTile extends Tile {
         this.setSourceImage(chestTileOpenImage);
         this.draw();
         screen.setTreasureRetrieved(true);
-        console.log("target complete");
     }
 }

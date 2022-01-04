@@ -4,6 +4,7 @@ let imageMap = new Map();
 let gameMap = new Map();
 let scoreMap = new Map();
 let deathGraphics;
+let muted = false;
 
 function loadJson(e) {
     let lines = e.target.result;
@@ -59,8 +60,8 @@ function draw() { //function executes every tick
     if (gameScreen != null) { //if screen is not active
         gameScreen.incrementTimer();
 
-        if (gameScreen.isStopped()) {
-            if (gameScreen.deathTimerEnded()) {
+        if (gameScreen.isStopped()) { //game has stopped / ended
+            if (gameScreen.deathTimerEnded()) { //once the timer determening how long the death screen should be visible for has ended
                 this.switchScreen();
             }
 
@@ -100,15 +101,35 @@ function loadGame(_gameData) {
 
 function loadScoreMap(_scoreData) {
     for (let i = 0; i < menuData.levels.length; i++) { //for each level states within the levels json file
-        scoreMap.set(menuData.levels[i].name, 0); //set the levels score to 0
+        scoreMap.set(menuData.levels[i].name, 0); //set the levels score to 0 within the score map
     }
 }
 
 function downloadScores() {
     for (let i = 0; i < scoreData.levels.length; i++) {
-        scoreData.levels[i].score = scoreMap.get(scoreData.levels[i].name);
+        scoreData.levels[i].score = scoreMap.get(scoreData.levels[i].name); //set the scores within the json file to equal that of the score map - persisting scores
     }
 
     saveJSON(scoreData, "scores.json");
+}
+
+function mute() {
+    let x; //holds binary value dependant on toggle
+
+    if (muted) { //toggle
+        x = 1;
+        muted = false;
+    } else if (!muted) {
+        x = 0;
+        muted = true;
+    }
+
+    levelSelectSound.setVolume(x);
+    teleportSound.setVolume(x);
+    switchSound.setVolume(x);
+    treasureSound.setVolume(x);
+    winSound.setVolume(x);
+    failSound.setVolume(x);
+    gameMusic.setVolume(x);
 }
 

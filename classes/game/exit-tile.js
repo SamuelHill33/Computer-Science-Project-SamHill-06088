@@ -26,11 +26,7 @@ class ExitTile extends Tile {
 
     executeInteract() {
         if (this.exitable) {
-            console.log("success");
             winSound.play();
-        } else {
-            console.log("failure");
-            
         }
 
         gameMusic.stop();
